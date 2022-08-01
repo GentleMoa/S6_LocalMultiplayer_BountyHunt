@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations.Rigging;
 //using System.Linq;
 
 public class Targeting : MonoBehaviour
@@ -12,10 +13,19 @@ public class Targeting : MonoBehaviour
     private Material _matEnemyInLOS;
     private Material _matEnemyTargeted;
     private Transform _ig11_raycastOrign;
+    private Transform _lastSavedTransform;
+    private float _lerpValue;
+    private bool _enemyRegistered = false;
 
     //Serialized Variables
     [SerializeField] private List<GameObject> enemiesInLOS = new List<GameObject>();
-    [SerializeField] private Transform _lookAtEnemy_Transform;
+    [SerializeField] private Transform torsoLookAtEnemy_Transform;
+    [SerializeField] private Transform torsoDefaultRotation;
+    [SerializeField] private float lerpDuration = 1.0f;
+    [SerializeField] private Transform leftHandLookAtEnemy_Transform;
+    [SerializeField] private Transform rightHandLookAtEnemy_Transform;
+    [SerializeField] private ChainIKConstraint leftHandIKConstraint;
+    [SerializeField] private ChainIKConstraint rightHandIKConstraint;
 
     //Public Variables
     public GameObject targetedEnemy;
@@ -27,7 +37,6 @@ public class Targeting : MonoBehaviour
         _matEnemyTargeted = Settings.Instance.matEnemyTargeted;
 
         _ig11_raycastOrign = GameObject.FindGameObjectWithTag("IG11_RaycastOrigin").GetComponent<Transform>();
-        //_lookAtEnemy_Transform = GameObject.FindGameObjectWithTag("LookAt_TargetedEnemy_Obj").GetComponent<Transform>();
     }
 
     void Update()
@@ -35,6 +44,7 @@ public class Targeting : MonoBehaviour
         CalculateTargetsInLineOfSight();
         CalculateClosestEnemy();
         TargetingUpperBody();
+        TargetingHands();
     }
 
     private void CalculateTargetsInLineOfSight()
@@ -100,7 +110,36 @@ public class Targeting : MonoBehaviour
     {
         if (targetedEnemy != null)
         {
-            _lookAtEnemy_Transform.LookAt(targetedEnemy.transform);
+            //Look at the targeted enemy
+            torsoLookAtEnemy_Transform.LookAt(targetedEnemy.transform);
+
+            _lastSavedTransform = torsoLookAtEnemy_Transform;
+            _enemyRegistered = true;
+        }
+        else
+        {
+            torsoLookAtEnemy_Transform.rotation = torsoDefaultRotation.rotation;
+
+            //Lerp back to default rotation ---> NOT WORKING FOR SOME REASON
+            //if (_enemyRegistered == true)
+            //{
+            //    _lerpValue += Time.deltaTime / lerpDuration;
+            //    torsoLookAtEnemy_Transform.rotation = Quaternion.Lerp(_lastSavedTransform.rotation, torsoDefaultRotation.rotation, _lerpValue);
+            //}
+        }
+    }
+
+    private void TargetingHands()
+    {
+        if (targetedEnemy != null)
+        {
+            leftHandIKConstraint.weight = 1.0f;
+            rightHandIKConstraint.weight = 1.0f;
+        }
+        else
+        {
+            leftHandIKConstraint.weight = 0.0f;
+            rightHandIKConstraint.weight = 0.0f;
         }
     }
 

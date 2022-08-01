@@ -11,7 +11,6 @@ TagManager:
   - PlacementIndicator
   - IG11_RaycastOrigin
   - Button_Shoot
-  - LookAt_TargetedEnemy_Obj
   layers:
   - Default
   - TransparentFX
