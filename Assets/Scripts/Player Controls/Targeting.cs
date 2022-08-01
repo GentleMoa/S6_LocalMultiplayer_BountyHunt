@@ -15,6 +15,7 @@ public class Targeting : MonoBehaviour
 
     //Serialized Variables
     [SerializeField] private List<GameObject> enemiesInLOS = new List<GameObject>();
+    [SerializeField] private Transform _lookAtEnemy_Transform;
 
     //Public Variables
     public GameObject targetedEnemy;
@@ -26,12 +27,14 @@ public class Targeting : MonoBehaviour
         _matEnemyTargeted = Settings.Instance.matEnemyTargeted;
 
         _ig11_raycastOrign = GameObject.FindGameObjectWithTag("IG11_RaycastOrigin").GetComponent<Transform>();
+        //_lookAtEnemy_Transform = GameObject.FindGameObjectWithTag("LookAt_TargetedEnemy_Obj").GetComponent<Transform>();
     }
 
     void Update()
     {
         CalculateTargetsInLineOfSight();
         CalculateClosestEnemy();
+        TargetingUpperBody();
     }
 
     private void CalculateTargetsInLineOfSight()
@@ -90,6 +93,14 @@ public class Targeting : MonoBehaviour
                 //remove the crosshair over that enemy
                 enemiesInLOS[i].GetComponentInChildren<Image>().enabled = false;
             }
+        }
+    }
+
+    private void TargetingUpperBody()
+    {
+        if (targetedEnemy != null)
+        {
+            _lookAtEnemy_Transform.LookAt(targetedEnemy.transform);
         }
     }
 

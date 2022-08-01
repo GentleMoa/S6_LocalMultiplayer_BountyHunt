@@ -31,7 +31,7 @@ public class PlayerChaser : MonoBehaviour
 
         Vector3 distToPlayer = transform.position - _playerPos.position;
 
-        Debug.Log("Magnitude of distToPlayer: " + distToPlayer.magnitude);
+        //Debug.Log("Magnitude of distToPlayer: " + distToPlayer.magnitude);
 
         if (distToPlayer.magnitude < _threshold)
         {
