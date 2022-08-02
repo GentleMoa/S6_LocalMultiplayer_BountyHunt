@@ -30,7 +30,7 @@ public class Shooting : MonoBehaviour
 
     public void Shoot()
     {
-        if (_targetingScript.targetedEnemy != null)
+        if (_targetingScript.targetedEnemy != null && _targetingScript.targetedEnemy.activeSelf == true)
         {
             _shootingBlaster = Random.Range(1, 3);
 
