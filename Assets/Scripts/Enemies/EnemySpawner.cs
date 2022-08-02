@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -10,16 +8,15 @@ public class EnemySpawner : MonoBehaviour
     private GameObject _raycastOrigin;
     private float _raycastOriginHeight;
     private List<GameObject> enemySpawnAreaCorners = new List<GameObject>();
-
-    //Serialized Variables
-    [Header("Attempted Enemy Spawn Delay in Seconds")]
-    [SerializeField] private float enemySpawnRate = 1.0f;
+    private float enemySpawnRate;
 
     void OnEnable()
     {
         GameManager.OnGameStateChanged += FindPlayAreaRelatedReferences;
         GameManager.OnGameStateChanged += RunPlayAreaRelatedLogic;
     }
+
+
 
     private void FindPlayAreaRelatedReferences(GameState state)
     {
@@ -43,11 +40,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (state == GameState.BeginEnemySpawning)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                //Calling the function to shoot a raycast and maybe spawn an enemy repeatately
-                InvokeRepeating("DesignateEnemySpawnPos", 0.0f, enemySpawnRate);
-            }
+            //if (PhotonNetwork.IsMasterClient)
+            //{
+            //    //Calling the function to shoot a raycast and maybe spawn an enemy repeatately
+            //    InvokeRepeating("DesignateEnemySpawnPos", 0.0f, enemySpawnRate);
+            //}
+
+            //Randomizing the enemySpawnRate to make enemies spawn dynamically
+            enemySpawnRate = Random.Range(1.0f, 2.0f);
+
+            //Calling the function to shoot a raycast and maybe spawn an enemy repeatately
+            InvokeRepeating("DesignateEnemySpawnPos", 0.0f, enemySpawnRate);
 
             //Update the GameState
             GameManager.Instance.UpdateGameState(GameState.Gameplay);

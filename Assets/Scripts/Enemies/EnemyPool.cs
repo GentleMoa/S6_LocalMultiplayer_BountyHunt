@@ -25,7 +25,7 @@ public class EnemyPool : MonoBehaviour
         if (state == GameState.PlayAreaFound)
         {
             //For Online Multiplayer
-            if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.InRoom /* && PhotonNetwork.IsMasterClient */)
             {
                 pooledObjects = new List<GameObject>();
                 GameObject _go;

@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetingScript: {fileID: 0}
-  _player: {fileID: 0}
 --- !u!114 &1983545166142866771
 MonoBehaviour:
   m_ObjectHideFlags: 0
