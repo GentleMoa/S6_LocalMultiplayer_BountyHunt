@@ -8,8 +8,11 @@ public class EnemySpawner : MonoBehaviour
     //Private Variables
     private GameObject _raycastOrigin;
     private float _raycastOriginHeight;
-    private float _enemySpawnRate = 1.5f;
     private List<GameObject> enemySpawnAreaCorners = new List<GameObject>();
+
+    //Serialized Variables
+    [Header("Attempted Enemy Spawn Delay in Seconds")]
+    [SerializeField] private float enemySpawnRate = 1.0f;
 
     void OnEnable()
     {
@@ -40,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         if (state == GameState.BeginEnemySpawning)
         {
             //Calling the function to shoot a raycast and maybe spawn an enemy repeatately
-            InvokeRepeating("DesignateEnemySpawnPos", 0.0f, _enemySpawnRate);
+            InvokeRepeating("DesignateEnemySpawnPos", 0.0f, enemySpawnRate);
 
             //Update the GameState
             GameManager.Instance.UpdateGameState(GameState.Gameplay);

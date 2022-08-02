@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using NativeWebSocket;
 using TMPro;
+using System.Text;
+using System.IO;
 
 public class WebSocketConnection : MonoBehaviour
 {
@@ -38,14 +38,15 @@ public class WebSocketConnection : MonoBehaviour
     }
 
 
-    // Event Handlers
-
+    //Event Handlers
     private void OnOpen()
     {
         print("Connection opened");
 
         //Giving the possibility to print logs into a text field in the canvas
         debugLogUI.text = "Connection opened";
+
+        Invoke("SendEmptyMessageToServer", 0.0f);
     }
 
     private void OnMessage(byte[] incomingBytes)
@@ -67,4 +68,46 @@ public class WebSocketConnection : MonoBehaviour
     {
         await _webSocket.Close();
     }
+
+
+    //Function Archive
+    private async void SendEmptyMessageToServer()
+    {
+        if (_webSocket.State  == WebSocketState.Open)
+        {
+            byte[] bytes = new byte[1] { 1 };
+            await _webSocket.Send(bytes);
+        }
+    }
+
+    //private void HandleIncomingData()
+    //{
+    //    // 1. Convert incoming byte[] to string:
+    //    string incomingString = System.Text.Encoding.UTF8.GetString(incomingBytes);
+    //
+    //    // 2. Check wether incoming string is an int or not. If it is an int, it isn't JSON but a serverError.
+    //    if (int.TryParse(incomingString, out _serverErrorCode))
+    //    {
+    //        //Handle serverError
+    //        print($"Server Error: {_serverErrorCode}");
+    //    }
+    //    else
+    //    {
+    //        //Handle JSON
+    //    }
+    //
+    //    // 3. After converting the byte[] data into JSON string, you can chekc for classType like this:
+    //    var parsedJson = JSON.Parse(yourJsonString);
+    //    string classType = N["classType"].Value;
+    //
+    //    if (classType == "PlayerPosition")
+    //    {
+    //        //Convert incoming JSON to object of type "PlayerPosition"
+    //    }
+    //    else /* if (classType == "...") */
+    //    {
+    //        //Check for other potential cases
+    //    }
+    //
+    //}
 }
