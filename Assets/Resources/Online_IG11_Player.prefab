@@ -1939,6 +1939,7 @@ GameObject:
   - component: {fileID: 8724733599296199040}
   - component: {fileID: 7166694890291643070}
   - component: {fileID: 9187082151086255525}
+  - component: {fileID: 874583092258969825}
   - component: {fileID: 7279348194630889019}
   - component: {fileID: 3795736893624332284}
   - component: {fileID: 1348138311986216538}
@@ -2125,6 +2126,26 @@ MonoBehaviour:
   leftHandIKConstraint: {fileID: 2542170502174383317}
   rightHandIKConstraint: {fileID: 1256057078847779370}
   targetedEnemy: {fileID: 0}
+--- !u!114 &874583092258969825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808463770207467683}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840c777cd01b07445bc0ae0b54508136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesInLOS: []
+  torsoLookAtEnemy_Transform: {fileID: 0}
+  torsoDefaultRotation: {fileID: 0}
+  leftHandLookAtEnemy_Transform: {fileID: 0}
+  rightHandLookAtEnemy_Transform: {fileID: 0}
+  leftHandIKConstraint: {fileID: 0}
+  rightHandIKConstraint: {fileID: 0}
+  targetedEnemy: {fileID: 0}
 --- !u!114 &7279348194630889019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2298,16 +2319,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: isWalking
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Idling
   - Type: 1
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: JoystickInput
   m_SynchronizeLayers:
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!1 &1877217291739011310
 GameObject:

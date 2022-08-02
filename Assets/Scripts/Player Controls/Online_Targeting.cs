@@ -5,24 +5,19 @@ using UnityEngine.UI;
 using UnityEngine.Animations.Rigging;
 //using System.Linq;
 
-public class Targeting : MonoBehaviour
+public class Online_Targeting : MonoBehaviour
 {
     //Private Variables
     private Vector3 _targetDirection;
     private Material _matEnemy;
     private Material _matEnemyInLOS;
-    //private Material _matEnemyTargeted;
     private Transform _ig11_raycastOrign;
-    //private Transform _lastSavedTransform;
-    //private float _lerpValue;
-    //private bool _enemyRegistered = false;
     private bool _torsoReset;
 
     //Serialized Variables
     [SerializeField] private List<GameObject> enemiesInLOS = new List<GameObject>();
     [SerializeField] private Transform torsoLookAtEnemy_Transform;
     [SerializeField] private Transform torsoDefaultRotation;
-    //[SerializeField] private float lerpDuration = 1.0f;
     [SerializeField] private Transform leftHandLookAtEnemy_Transform;
     [SerializeField] private Transform rightHandLookAtEnemy_Transform;
     [SerializeField] private ChainIKConstraint leftHandIKConstraint;
@@ -35,7 +30,6 @@ public class Targeting : MonoBehaviour
     {
         _matEnemy = Settings.Instance.matEnemy;
         _matEnemyInLOS = Settings.Instance.matEnemyInLOS;
-        //_matEnemyTargeted = Settings.Instance.matEnemyTargeted;
 
         _ig11_raycastOrign = GameObject.FindGameObjectWithTag("IG11_RaycastOrigin").GetComponent<Transform>();
     }
@@ -125,13 +119,6 @@ public class Targeting : MonoBehaviour
                 torsoLookAtEnemy_Transform.rotation = torsoDefaultRotation.rotation * Quaternion.Euler(0.0f, 90.0f, 180.0f);
                 _torsoReset = true;
             }
-
-            ////Lerp back to default rotation ---> NOT WORKING FOR SOME REASON
-            //if (_enemyRegistered == true)
-            //{
-            //    _lerpValue += Time.deltaTime / lerpDuration;
-            //    torsoLookAtEnemy_Transform.rotation = Quaternion.Lerp(_lastSavedTransform.rotation, torsoDefaultRotation.rotation, _lerpValue);
-            //}
         }
     }
 

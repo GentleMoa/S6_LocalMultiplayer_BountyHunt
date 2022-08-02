@@ -10,15 +10,36 @@ public class Online_Laser : MonoBehaviour
     private Online_Shooting _onlineShootingScript;
     private float _forceMultiplier = 4.0f;
     private PhotonView _photonView;
+    private GameObject _player;
+    private GameObject[] _players;
 
-    //Serialized Variables
-    [SerializeField] private GameObject _player;
+    void Awake()
+    {
+        //This throws NullReference Erros for the secondary player, since on their game runtime _player is never assigned
+        _players = GameObject.FindGameObjectsWithTag("Player");
+
+        if (_players.Length == 1)
+        {
+            _player = _players[0];
+        }
+        else if (_players.Length > 1)
+        {
+            for (int i = 0; i < _players.Length; i++)
+            {
+                if (_players[i].GetComponent<PhotonView>().IsMine)
+                {
+                    _player = _players[i];
+                }
+            }
+        }
+    }
 
     void Start()
     {
         _laserRB = GetComponent<Rigidbody>();
         _photonView = GetComponent<PhotonView>();
-        _player = GameObject.FindGameObjectWithTag("Player");
+
+        //_player = GameObject.FindGameObjectWithTag("Player");
 
         _targetingScript = _player.GetComponent<Targeting>();
         _onlineShootingScript = _player.GetComponent<Online_Shooting>();
@@ -30,10 +51,6 @@ public class Online_Laser : MonoBehaviour
         {
             transform.LookAt(_targetingScript.targetedEnemy.transform);
         }
-        //else
-        //{
-        //    Destroy(this.gameObject);
-        //}
 
         if (_onlineShootingScript._shootingBlaster == 1)
         {
