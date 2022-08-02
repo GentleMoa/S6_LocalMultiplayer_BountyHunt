@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +6,6 @@ public class Shooting : MonoBehaviour
     //Private Variables
     private Button _shootingButton;
     private Targeting _targetingScript;
-    private float _forceMultiplier = 2.0f;
 
     //Serialized Variables
     [SerializeField] private GameObject laserProjectile;

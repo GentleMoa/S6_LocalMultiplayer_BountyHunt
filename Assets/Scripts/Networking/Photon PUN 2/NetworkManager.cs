@@ -91,10 +91,4 @@ public sealed class NetworkManager : MonoBehaviourPunCallbacks
             GameManager.Instance.UpdateGameState(GameState.FindPlayArea);
         }
     }
-
-    ////No need to unsubscribe from the event, since this is a singleton, which won't be destroyed
-    //private void OnDisable()
-    //{
-    //    GameManager.OnGameStateChanged -= LoadScene_1;
-    //}
 }
