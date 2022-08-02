@@ -11,6 +11,9 @@ TagManager:
   - PlacementIndicator
   - IG11_RaycastOrigin
   - Button_Shoot
+  - Bullet
+  - Online_PlayArea
+  - UIDebugger
   layers:
   - Default
   - TransparentFX

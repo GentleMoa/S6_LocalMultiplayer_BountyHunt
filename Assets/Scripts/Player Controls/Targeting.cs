@@ -11,18 +11,18 @@ public class Targeting : MonoBehaviour
     private Vector3 _targetDirection;
     private Material _matEnemy;
     private Material _matEnemyInLOS;
-    private Material _matEnemyTargeted;
+    //private Material _matEnemyTargeted;
     private Transform _ig11_raycastOrign;
-    private Transform _lastSavedTransform;
-    private float _lerpValue;
-    private bool _enemyRegistered = false;
+    //private Transform _lastSavedTransform;
+    //private float _lerpValue;
+    //private bool _enemyRegistered = false;
     private bool _torsoReset;
 
     //Serialized Variables
     [SerializeField] private List<GameObject> enemiesInLOS = new List<GameObject>();
     [SerializeField] private Transform torsoLookAtEnemy_Transform;
     [SerializeField] private Transform torsoDefaultRotation;
-    [SerializeField] private float lerpDuration = 1.0f;
+    //[SerializeField] private float lerpDuration = 1.0f;
     [SerializeField] private Transform leftHandLookAtEnemy_Transform;
     [SerializeField] private Transform rightHandLookAtEnemy_Transform;
     [SerializeField] private ChainIKConstraint leftHandIKConstraint;
@@ -35,7 +35,7 @@ public class Targeting : MonoBehaviour
     {
         _matEnemy = Settings.Instance.matEnemy;
         _matEnemyInLOS = Settings.Instance.matEnemyInLOS;
-        _matEnemyTargeted = Settings.Instance.matEnemyTargeted;
+        //_matEnemyTargeted = Settings.Instance.matEnemyTargeted;
 
         _ig11_raycastOrign = GameObject.FindGameObjectWithTag("IG11_RaycastOrigin").GetComponent<Transform>();
     }
@@ -114,8 +114,8 @@ public class Targeting : MonoBehaviour
             //Look at the targeted enemy
             torsoLookAtEnemy_Transform.LookAt(targetedEnemy.transform);
 
-            _lastSavedTransform = torsoLookAtEnemy_Transform;
-            _enemyRegistered = true;
+            //_lastSavedTransform = torsoLookAtEnemy_Transform;
+            //_enemyRegistered = true;
             _torsoReset = false;
         }
         else

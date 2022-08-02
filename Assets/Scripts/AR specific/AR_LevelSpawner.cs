@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using Photon.Pun;
 
 public class AR_LevelSpawner : MonoBehaviour
 {
@@ -105,8 +106,18 @@ public class AR_LevelSpawner : MonoBehaviour
 #if UNITY_ANDROID
             if (_levelStartPlaced == false && _placementPoseIsValid == true)
             {
-                //Spawning the level map
-                Instantiate(_levelMap, _placementPose.position, _placementPose.rotation);
+                //For Online Multiplayer
+                if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+                {
+                    //Spawning the level map
+                    PhotonNetwork.Instantiate("Online_PlayArea", _placementPose.position, _placementPose.rotation);
+                }
+                //For Offline Singleplayer
+                else if (!PhotonNetwork.InRoom)
+                {
+                    //Spawning the level map
+                    Instantiate(_levelMap, _placementPose.position, _placementPose.rotation);
+                }
 
                 //Spawning the player
                 SpawnPlayer();
@@ -121,8 +132,18 @@ public class AR_LevelSpawner : MonoBehaviour
 #if UNITY_EDITOR
             if (_levelStartPlaced == false)
             {
-                //Spawning the level map
-                Instantiate(_levelMap, Vector3.zero, Quaternion.identity);
+                //For Online Multiplayer
+                if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+                {
+                    //Spawning the level map
+                    PhotonNetwork.Instantiate("Online_PlayArea", Vector3.zero, Quaternion.identity);
+                }
+                //For Offline Singleplayer
+                else if (!PhotonNetwork.InRoom)
+                {
+                    //Spawning the level map
+                    Instantiate(_levelMap, Vector3.zero, Quaternion.identity);
+                }
 
                 //Spawning the player
                 SpawnPlayer();
@@ -138,8 +159,26 @@ public class AR_LevelSpawner : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        //Spawning the player
-        Instantiate(_player, _placementPose.position + new Vector3(0.0f, 0.01f, 0.0f), _placementPose.rotation);
+        //For Online Multiplayer
+        if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            //Spawning the player
+            PhotonNetwork.Instantiate("Online_IG11_Player", _placementPose.position + new Vector3(0.0f, 0.01f, 0.0f), _placementPose.rotation);
+        }
+        //For Non-Master Client
+        else if (PhotonNetwork.InRoom && !PhotonNetwork.IsMasterClient)
+        {
+            var playAreaTransform = GameObject.FindGameObjectWithTag("Online_PlayArea").GetComponent<Transform>();
+
+            //Spawning the player
+            PhotonNetwork.Instantiate("Online_IG11_Player", playAreaTransform.position + new Vector3(0.0f, 0.01f, 0.0f), playAreaTransform.rotation);
+        }
+        //For Offline Singleplayer
+        else if (!PhotonNetwork.InRoom)
+        {
+            //Spawning the player
+            Instantiate(_player, _placementPose.position + new Vector3(0.0f, 0.01f, 0.0f), _placementPose.rotation);
+        }
     }
 
 

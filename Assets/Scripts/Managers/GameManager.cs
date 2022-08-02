@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    //Giving the possibility to print logs into a text field in the canvas
+    [SerializeField] private TMP_Text debugLogUI;
+
     public GameState State;
 
     public static event Action<GameState> OnGameStateChanged;
@@ -21,10 +25,16 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        //For UIDebugger
+        OnGameStateChanged += RefindUIDebuggerReference;
     }
 
     void Start()
     {
+        //Find Reference to UIDebugger
+        debugLogUI = GameObject.FindGameObjectWithTag("UIDebugger").GetComponentInChildren<TMP_Text>();
+
         UpdateGameState(GameState.Beginning);
     }
 
@@ -34,7 +44,12 @@ public class GameManager : MonoBehaviour
 
         State = newState;
 
+        //Debugging
         Debug.Log("New State: " + State);
+        if (debugLogUI != null)
+        {
+            debugLogUI.text = "Current GameState: " + State;
+        }
 
         switch (newState)
         {
@@ -57,6 +72,22 @@ public class GameManager : MonoBehaviour
         }
 
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    private void RefindUIDebuggerReference(GameState state)
+    {
+        if (state == GameState.FindPlayArea)
+        {
+            Invoke("FindUIDebuggerReference", 0.2f);
+        }
+    }
+
+    private void FindUIDebuggerReference()
+    {
+        //Find Reference to UIDebugger
+        debugLogUI = GameObject.FindGameObjectWithTag("UIDebugger").GetComponentInChildren<TMP_Text>();
+
+        OnGameStateChanged -= RefindUIDebuggerReference;
     }
 }
 
