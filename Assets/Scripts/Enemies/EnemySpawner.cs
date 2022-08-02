@@ -70,7 +70,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     _enemy.transform.position = hit.point + new Vector3(0.0f, 0.1f, 0.0f);
                     _enemy.transform.rotation = Quaternion.identity;
-                    _enemy.SetActive(true);
+                    //_enemy.SetActive(true);
+                    _enemy.GetComponent<EnemyToggler>().photonView.RPC("ToggleEnemy", RpcTarget.All, true);
                 }
             }
         }
