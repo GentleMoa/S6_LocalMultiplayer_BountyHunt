@@ -16,6 +16,7 @@ public class Targeting : MonoBehaviour
     private Transform _lastSavedTransform;
     private float _lerpValue;
     private bool _enemyRegistered = false;
+    private bool _torsoReset;
 
     //Serialized Variables
     [SerializeField] private List<GameObject> enemiesInLOS = new List<GameObject>();
@@ -108,19 +109,24 @@ public class Targeting : MonoBehaviour
 
     private void TargetingUpperBody()
     {
-        if (targetedEnemy != null)
+        if (targetedEnemy != null && targetedEnemy.activeSelf == true)
         {
             //Look at the targeted enemy
             torsoLookAtEnemy_Transform.LookAt(targetedEnemy.transform);
 
             _lastSavedTransform = torsoLookAtEnemy_Transform;
             _enemyRegistered = true;
+            _torsoReset = false;
         }
         else
         {
-            torsoLookAtEnemy_Transform.rotation = torsoDefaultRotation.rotation;
+            if (_torsoReset == false)
+            {
+                torsoLookAtEnemy_Transform.rotation = torsoDefaultRotation.rotation * Quaternion.Euler(0.0f, 90.0f, 180.0f);
+                _torsoReset = true;
+            }
 
-            //Lerp back to default rotation ---> NOT WORKING FOR SOME REASON
+            ////Lerp back to default rotation ---> NOT WORKING FOR SOME REASON
             //if (_enemyRegistered == true)
             //{
             //    _lerpValue += Time.deltaTime / lerpDuration;
@@ -131,7 +137,7 @@ public class Targeting : MonoBehaviour
 
     private void TargetingHands()
     {
-        if (targetedEnemy != null)
+        if (targetedEnemy != null && targetedEnemy.activeSelf == true)
         {
             leftHandIKConstraint.weight = 1.0f;
             rightHandIKConstraint.weight = 1.0f;

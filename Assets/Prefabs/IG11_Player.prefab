@@ -2116,7 +2116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInLOS: []
   torsoLookAtEnemy_Transform: {fileID: 8306726446809631798}
-  torsoDefaultRotation: {fileID: 8306726446809631798}
+  torsoDefaultRotation: {fileID: 2757455655799573566}
   lerpDuration: 1
   leftHandLookAtEnemy_Transform: {fileID: 3616126069265856382}
   rightHandLookAtEnemy_Transform: {fileID: 1732135893865685597}
