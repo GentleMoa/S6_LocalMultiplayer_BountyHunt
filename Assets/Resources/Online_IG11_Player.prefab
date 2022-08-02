@@ -1758,6 +1758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1732135893865685597}
+  - component: {fileID: 6311162660400548887}
   m_Layer: 0
   m_Name: Bone_arm_upper.R
   m_TagString: Untagged
@@ -1781,6 +1782,22 @@ Transform:
   m_Father: {fileID: 3613497087927975988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6311162660400548887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761251227247184637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1777799874225321952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1956,6 @@ GameObject:
   - component: {fileID: 8724733599296199040}
   - component: {fileID: 7166694890291643070}
   - component: {fileID: 9187082151086255525}
-  - component: {fileID: 874583092258969825}
   - component: {fileID: 7279348194630889019}
   - component: {fileID: 3795736893624332284}
   - component: {fileID: 1348138311986216538}
@@ -2126,26 +2142,6 @@ MonoBehaviour:
   leftHandIKConstraint: {fileID: 2542170502174383317}
   rightHandIKConstraint: {fileID: 1256057078847779370}
   targetedEnemy: {fileID: 0}
---- !u!114 &874583092258969825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808463770207467683}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 840c777cd01b07445bc0ae0b54508136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesInLOS: []
-  torsoLookAtEnemy_Transform: {fileID: 0}
-  torsoDefaultRotation: {fileID: 0}
-  leftHandLookAtEnemy_Transform: {fileID: 0}
-  rightHandLookAtEnemy_Transform: {fileID: 0}
-  leftHandIKConstraint: {fileID: 0}
-  rightHandIKConstraint: {fileID: 0}
-  targetedEnemy: {fileID: 0}
 --- !u!114 &7279348194630889019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2284,6 +2280,10 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 6782698768155213934}
   - {fileID: 7478382632656727219}
+  - {fileID: 1149031674382494618}
+  - {fileID: 3437950256061551816}
+  - {fileID: 5822789456964297949}
+  - {fileID: 6311162660400548887}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -5364,6 +5364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8306726446809631798}
+  - component: {fileID: 3437950256061551816}
   m_Layer: 0
   m_Name: Bone_stomach
   m_TagString: Untagged
@@ -5393,6 +5394,22 @@ Transform:
   m_Father: {fileID: 2757455655799573566}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3437950256061551816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411637784002462530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &3556524573266681411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5402,6 +5419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2757455655799573566}
+  - component: {fileID: 1149031674382494618}
   m_Layer: 0
   m_Name: Bone_pelvis
   m_TagString: Untagged
@@ -5429,6 +5447,22 @@ Transform:
   m_Father: {fileID: 5733141097897957816}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1149031674382494618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3556524573266681411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &3633340214295826260
 GameObject:
   m_ObjectHideFlags: 0
@@ -9348,6 +9382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3616126069265856382}
+  - component: {fileID: 5822789456964297949}
   m_Layer: 0
   m_Name: Bone_arm_upper.L
   m_TagString: Untagged
@@ -9371,6 +9406,22 @@ Transform:
   m_Father: {fileID: 6663404532238019707}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5822789456964297949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712491751846209871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &6764157341909143068
 GameObject:
   m_ObjectHideFlags: 0
@@ -10960,6 +11011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870634786055844016}
   - component: {fileID: 1256057078847779370}
+  - component: {fileID: 8060163882713039597}
   m_Layer: 0
   m_Name: RightHand_IK_Constraint
   m_TagString: Untagged
@@ -11005,6 +11057,22 @@ MonoBehaviour:
     m_Tolerance: 0.0001
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &8060163882713039597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534120731467685216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &7830207811873643234
 GameObject:
   m_ObjectHideFlags: 0
@@ -12060,6 +12128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3141890264317555621}
   - component: {fileID: 2542170502174383317}
+  - component: {fileID: 7939928457800742850}
   m_Layer: 0
   m_Name: LeftHand_IK_Constraint
   m_TagString: Untagged
@@ -12105,6 +12174,22 @@ MonoBehaviour:
     m_Tolerance: 0.0001
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &7939928457800742850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513967211152656705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &8591239734908642805
 GameObject:
   m_ObjectHideFlags: 0
