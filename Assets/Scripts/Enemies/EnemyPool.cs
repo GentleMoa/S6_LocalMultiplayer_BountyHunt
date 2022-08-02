@@ -35,7 +35,8 @@ public class EnemyPool : MonoBehaviour
                     var onlinePlayAreaTransform = GameObject.FindGameObjectWithTag("Online_PlayArea").GetComponent<Transform>();
 
                     _go = PhotonNetwork.Instantiate("Online_Enemy_Placeholder", onlinePlayAreaTransform.position + new Vector3(0.0f, 0.1f, 0.0f), Quaternion.identity);
-                    _go.SetActive(false);
+                    //_go.SetActive(false);
+                    _go.GetComponent<EnemyToggler>().photonView.RPC("ToggleEnemy", RpcTarget.All, false);
                     pooledObjects.Add(_go);
                 }
             }

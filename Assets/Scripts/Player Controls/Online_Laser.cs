@@ -9,6 +9,7 @@ public class Online_Laser : MonoBehaviour
     public Targeting _targetingScript;
     private Online_Shooting _onlineShootingScript;
     private float _forceMultiplier = 4.0f;
+    private PhotonView _photonView;
 
     //Serialized Variables
     [SerializeField] private GameObject _player;
@@ -16,6 +17,7 @@ public class Online_Laser : MonoBehaviour
     void Start()
     {
         _laserRB = GetComponent<Rigidbody>();
+        _photonView = GetComponent<PhotonView>();
         _player = GameObject.FindGameObjectWithTag("Player");
 
         _targetingScript = _player.GetComponent<Targeting>();
@@ -49,17 +51,26 @@ public class Online_Laser : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.SetActive(false);
+            //collision.gameObject.SetActive(false);
+            collision.gameObject.GetComponent<EnemyToggler>().photonView.RPC("ToggleEnemy", RpcTarget.All, false);
         }
 
-        PhotonNetwork.Destroy(this.gameObject);
+        //PhotonNetwork.Destroy(this.gameObject);
+        _photonView.RPC("NetworkDestroyLaser", RpcTarget.All);
     }
 
     private void DestroyIfOutOfBounds()
     {
         if (Vector3.Distance(_player.transform.position, transform.position) > 3.0f)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            //PhotonNetwork.Destroy(this.gameObject);
+            _photonView.RPC("NetworkDestroyLaser", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    private void NetworkDestroyLaser()
+    {
+        Destroy(this.gameObject);
     }
 }
