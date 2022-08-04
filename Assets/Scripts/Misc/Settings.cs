@@ -20,6 +20,10 @@ public class Settings : MonoBehaviour
 
     //Reference Archive
 
+    [Header("")]
+    //For all Prefabs
+    [Header("Prefabs")]
+
     //For Script: AR_LevelSpawner --> On "GameLogicHolder" GameObject, in "Scene_1"
     [Header ("AR_LevelSpawner")]
     public GameObject levelMap;
@@ -33,6 +37,30 @@ public class Settings : MonoBehaviour
     [Header ("Targeting")]
     public Material matEnemy;
     public Material matEnemyInLOS;
-    public Material matEnemyTargeted;
 
+    [Header("")]
+    //For all Audio Scripts
+    [Header("Audio")]
+
+    [Header("Player")]
+    public AudioClip audio_robot_activateLaser;
+
+    [Header("EnemySpawning")]
+    public AudioClip audio_enemy_spawning;
+
+    [Header("Laser")]
+    public AudioClip[] audio_lasers_shot;
+
+    [Header("Button_Quit")]
+    public AudioClip audio_quitButton_sound;
+
+    [Header("Buttons_Misc")]
+    public AudioClip audio_startButton_sound;
+
+    [Header("")]
+    //For all Music Pieces
+    [Header("Music")]
+
+    [Header("MainMenu")]
+    public AudioClip music_mainMenu;
 }

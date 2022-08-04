@@ -6,6 +6,7 @@ using Photon.Pun;
 public class EnemyToggler : MonoBehaviour
 {
     //Public Variables
+    [HideInInspector]
     public PhotonView photonView;
 
     void Awake()

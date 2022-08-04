@@ -11,6 +11,8 @@ MonoImporter:
   - enemy: {fileID: 7213088849516290598, guid: c2ec21d092145c441aba080169d1da9e, type: 3}
   - matEnemy: {fileID: 2100000, guid: 3247d9dd081a60647aaf25f25e9e485a, type: 2}
   - matEnemyInLOS: {fileID: 2100000, guid: 99ed58c3fed13cc40bdc681c9edc521e, type: 2}
+  - audio_robot_activateLaser: {fileID: 8300000, guid: c7b8f95fb34dd714eb7b81e9c177becc,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

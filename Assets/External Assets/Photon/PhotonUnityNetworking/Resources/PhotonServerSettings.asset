@@ -41,6 +41,9 @@ MonoBehaviour:
   - RespawnSpaceship
   - NetworkDestroyLaser
   - ToggleEnemy
+  - Play_Audio_Robot_ActivateLaser
+  - Play_Audio_Enemy_Spawning
+  - Play_Audio_Laser_Shot
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
