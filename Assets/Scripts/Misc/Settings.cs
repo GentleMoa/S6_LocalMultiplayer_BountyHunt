@@ -63,4 +63,7 @@ public class Settings : MonoBehaviour
 
     [Header("MainMenu")]
     public AudioClip music_mainMenu;
+
+    [Header("Gameplay")]
+    public AudioClip[] music_gameplay;
 }
