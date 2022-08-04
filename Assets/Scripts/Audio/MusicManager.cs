@@ -11,6 +11,7 @@ public class MusicManager : MonoBehaviour
 
     //Private Variables
     private AudioClip _music_mainMenu;
+    private AudioClip[] _music_gameplay = new AudioClip[4]; //Scale this Array.Length according to Settings.Instance.music_gameplay.Length!
 
     //Singleton Pattern!
     public static MusicManager Instance { set; get; }
@@ -30,18 +31,13 @@ public class MusicManager : MonoBehaviour
         //Get the AudioClip from the Settings
         _music_mainMenu = Settings.Instance.music_mainMenu;
 
+        //Get the AudioClip from the Settings
+        System.Array.Copy(Settings.Instance.music_gameplay, _music_gameplay, Settings.Instance.music_gameplay.Length);
+
         //Subscribe the main function to the GameManager's OnGameStateChanged event, which controlls the game flow
         GameManager.OnGameStateChanged += PlayMusic;
     }
 
-    //void Start()
-    //{
-    //    //Get the AudioClip from the Settings
-    //    _music_mainMenu = Settings.Instance.music_mainMenu;
-    //
-    //    //Subscribe the main function to the GameManager's OnGameStateChanged event, which controlls the game flow
-    //    GameManager.OnGameStateChanged += PlayMusic;
-    //}
 
     private void PlayMusic(GameState state)
     {
@@ -51,12 +47,27 @@ public class MusicManager : MonoBehaviour
             _audioSource.clip = _music_mainMenu;
             _audioSource.Play();
         }
+        //Play Gameplay Music
+        else if (state == GameState.PrepareEnemySpawning)
+        {
+            //Stopping the MainMenu Music
+            _audioSource.loop = false;
+            _audioSource.Stop();
 
-        ////Play Randomized Gameplay Music
-        //if (state == GameState.FindPlayArea)
-        //{
-        //    //Randomize Gameplay Music
-        //}
+            //Setting up and Starting the Gameplay Music
+            _audioSource.volume = 0.2f;
+            _audioSource.clip = _music_gameplay[0];
+            _audioSource.Play();
+        }
+    }
+
+    void Update()
+    {
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.clip = _music_gameplay[Random.Range(0, _music_gameplay.Length)];
+            _audioSource.Play();
+        }
     }
 
     void OnDisable()

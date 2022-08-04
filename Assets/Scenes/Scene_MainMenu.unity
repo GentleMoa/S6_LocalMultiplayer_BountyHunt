@@ -429,6 +429,11 @@ MonoBehaviour:
   audio_startButton_sound: {fileID: 8300000, guid: a820b749c9bfa0c4c91a27cb3e1cc070,
     type: 3}
   music_mainMenu: {fileID: 8300000, guid: d9e8d5d6dbe42f940aadeb2ef4f83a6d, type: 3}
+  music_gameplay:
+  - {fileID: 8300000, guid: 660e61f5a30ea2c4c8fcdc8cdd46e45f, type: 3}
+  - {fileID: 8300000, guid: 51a934e89354f5b40a0359b69f2c6454, type: 3}
+  - {fileID: 8300000, guid: e2f8634f66c529f44859f6205e310b2c, type: 3}
+  - {fileID: 8300000, guid: 1087f5cafa1271344811c655a7ef3edc, type: 3}
 --- !u!4 &139090103
 Transform:
   m_ObjectHideFlags: 0

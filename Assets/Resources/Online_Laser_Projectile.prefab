@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetingScript: {fileID: 0}
+  photonView: {fileID: 1983545166142866771}
 --- !u!114 &1983545166142866771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.75
   Loop: 0
   Mute: 0
   Spatialize: 0
