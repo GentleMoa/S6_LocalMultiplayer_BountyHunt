@@ -12,7 +12,7 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] int poolSize;
 
     //Private Variables
-    private GameObject _enemy;
+    [SerializeField] private GameObject _enemy;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class EnemyPool : MonoBehaviour
                     //Find Online_PlayArea
                     var onlinePlayAreaTransform = GameObject.FindGameObjectWithTag("Online_PlayArea").GetComponent<Transform>();
 
-                    _go = PhotonNetwork.Instantiate("Online_Enemy_Placeholder", onlinePlayAreaTransform.position + new Vector3(0.0f, 0.1f, 0.0f), Quaternion.identity);
+                    _go = PhotonNetwork.Instantiate("Online_Enemy_Clone", onlinePlayAreaTransform.position /* + new Vector3(0.0f, 0.1f, 0.0f) */, Quaternion.identity);
                     //_go.SetActive(false);
                     _go.GetComponent<EnemyToggler>().photonView.RPC("ToggleEnemy", RpcTarget.All, false);
                     pooledObjects.Add(_go);

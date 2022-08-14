@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations.Rigging;
-//using System.Linq;
 
 public class Targeting : MonoBehaviour
 {
@@ -50,7 +49,7 @@ public class Targeting : MonoBehaviour
             var enemyTransform = enemy.GetComponent<Transform>();
 
             RaycastHit hit;
-            _targetDirection = (enemy.transform.position - _ig11_raycastOrign.position).normalized;
+            _targetDirection = ((enemy.transform.position - _ig11_raycastOrign.position) + new Vector3(0.0f, 0.15f, 0.0f)).normalized;
 
             if (Physics.Raycast(_ig11_raycastOrign.position, _targetDirection, out hit))
             {
@@ -59,7 +58,7 @@ public class Targeting : MonoBehaviour
                     if (!enemiesInLOS.Contains(hit.transform.gameObject))
                     {
                         enemiesInLOS.Add(hit.transform.gameObject);
-                        UpdateEnemiesMat(enemy.GetComponent<Renderer>(), _matEnemyInLOS);
+                        //UpdateEnemiesMat(enemy.GetComponent<Renderer>(), _matEnemyInLOS);
                     }
                 }
                 else
@@ -67,7 +66,7 @@ public class Targeting : MonoBehaviour
                     if (enemiesInLOS.Contains(enemy))
                     {
                         enemiesInLOS.Remove(enemy);
-                        UpdateEnemiesMat(enemy.GetComponent<Renderer>(), _matEnemy);
+                        //UpdateEnemiesMat(enemy.GetComponent<Renderer>(), _matEnemy);
                     }
                 }
             }
@@ -106,7 +105,7 @@ public class Targeting : MonoBehaviour
         if (targetedEnemy != null && targetedEnemy.activeSelf == true)
         {
             //Look at the targeted enemy
-            torsoLookAtEnemy_Transform.LookAt(targetedEnemy.transform);
+            torsoLookAtEnemy_Transform.LookAt(targetedEnemy.transform.position + new Vector3(0.0f, 0.15f, 0.0f));
 
             //_lastSavedTransform = torsoLookAtEnemy_Transform;
             //_enemyRegistered = true;
@@ -136,11 +135,11 @@ public class Targeting : MonoBehaviour
         }
     }
 
-    private void UpdateEnemiesMat(Renderer rnd, Material mat)
-    {
-        if (rnd.material != mat)
-        {
-            rnd.material = mat;
-        }
-    }
+    //private void UpdateEnemiesMat(Renderer rnd, Material mat)
+    //{
+    //    if (rnd.material != mat)
+    //    {
+    //        rnd.material = mat;
+    //    }
+    //}
 }

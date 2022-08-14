@@ -412,7 +412,7 @@ MonoBehaviour:
   levelMap: {fileID: 8669052529357407513, guid: b10601fa6769abf40bb737894ae50ec6,
     type: 3}
   player: {fileID: 1808463770207467683, guid: 955f5c59ed5727942bdc9c3a56b8f53c, type: 3}
-  enemy: {fileID: 7213088849516290598, guid: c2ec21d092145c441aba080169d1da9e, type: 3}
+  enemy: {fileID: 3277108939506196404, guid: c1368ed4d20d25546afe2d4cb993b6ff, type: 3}
   matEnemy: {fileID: 2100000, guid: 3247d9dd081a60647aaf25f25e9e485a, type: 2}
   matEnemyInLOS: {fileID: 2100000, guid: 99ed58c3fed13cc40bdc681c9edc521e, type: 2}
   audio_robot_activateLaser: {fileID: 8300000, guid: c7b8f95fb34dd714eb7b81e9c177becc,
