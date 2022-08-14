@@ -8,13 +8,18 @@ public class PlayerChaser : MonoBehaviour
 {
     //Private Variables
     private NavMeshAgent _navMeshAgent;
-    private float _threshold = 0.15f;
-    private bool _chasing = true;
 
     //Serialized Variables
     [SerializeField] private Transform _playerPos;
     [SerializeField] private GameObject[] _players;
 
+    //Public Variables
+    public bool hasBeenShot = false;
+
+    private void OnEnable()
+    {
+        hasBeenShot = false;
+    }
 
     void Start()
     {
@@ -29,23 +34,17 @@ public class PlayerChaser : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (_playerPos != null)
+        if (hasBeenShot == false)
         {
-            if (_chasing == true)
+            if (_playerPos != null)
             {
+                _navMeshAgent.isStopped = false;
                 _navMeshAgent.SetDestination(_playerPos.position);
             }
-
-            Vector3 distToPlayer = transform.position - _playerPos.position;
-
-            if (distToPlayer.magnitude < _threshold)
-            {
-                _chasing = false;
-            }
-            else
-            {
-                _chasing = true;
-            }
+        }
+        else if (hasBeenShot == true)
+        {
+            _navMeshAgent.isStopped = true;
         }
     }
 

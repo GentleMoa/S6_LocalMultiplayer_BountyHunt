@@ -51,16 +51,16 @@ public class Online_Laser : MonoBehaviour
     {
         if (_targetingScript.targetedEnemy != null && _targetingScript.targetedEnemy.activeSelf == true)
         {
-            transform.LookAt(_targetingScript.targetedEnemy.transform);
+            transform.LookAt(_targetingScript.targetedEnemy.transform.position + new Vector3(0.0f, 0.15f, 0.0f));
         }
 
         if (_onlineShootingScript._shootingBlaster == 1)
         {
-            _laserRB.AddForce((_targetingScript.targetedEnemy.transform.position - _onlineShootingScript.laserSpawnPoint_1.position) * _forceMultiplier, ForceMode.Force);
+            _laserRB.AddForce(((_targetingScript.targetedEnemy.transform.position + new Vector3(0.0f, 0.15f, 0.0f)) - _onlineShootingScript.laserSpawnPoint_1.position) * _forceMultiplier, ForceMode.Force);
         }
         else if (_onlineShootingScript._shootingBlaster == 2)
         {
-            _laserRB.AddForce((_targetingScript.targetedEnemy.transform.position - _onlineShootingScript.laserSpawnPoint_2.position) * _forceMultiplier, ForceMode.Force);
+            _laserRB.AddForce(((_targetingScript.targetedEnemy.transform.position + new Vector3(0.0f, 0.15f, 0.0f)) - _onlineShootingScript.laserSpawnPoint_2.position) * _forceMultiplier, ForceMode.Force);
         }
 
         DestroyIfOutOfBounds();
@@ -70,8 +70,17 @@ public class Online_Laser : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            //collision.gameObject.SetActive(false);
-            collision.gameObject.GetComponent<EnemyToggler>().photonView.RPC("ToggleEnemy", RpcTarget.All, false);
+            //Make the enemy nav mesh agent stop
+            collision.gameObject.GetComponent<PlayerChaser>().hasBeenShot = true;
+
+            //Play shot enemy dying anim
+            collision.gameObject.GetComponent<Animator>().SetTrigger("SetDying");
+
+            //Set shot enemy inactive (without delay) DelayedToggleEnemy
+            //collision.gameObject.GetComponent<EnemyToggler>().photonView.RPC("ToggleEnemy", RpcTarget.All, false);
+
+            //Set shot enemy inactive (with 3 seconds delay)
+            collision.gameObject.GetComponent<EnemyToggler>().photonView.RPC("DelayedToggleEnemy", RpcTarget.All);
         }
 
         //PhotonNetwork.Destroy(this.gameObject);

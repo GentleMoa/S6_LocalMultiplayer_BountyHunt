@@ -19,4 +19,18 @@ public class EnemyToggler : MonoBehaviour
     {
         this.gameObject.SetActive(boolean);
     }
+
+    [PunRPC]
+    public void DelayedToggleEnemy()
+    {
+        StartCoroutine(DisableEnemy(2.8f, false));
+    }
+
+    IEnumerator DisableEnemy(float delay, bool boolean)
+    {
+        yield return new WaitForSeconds(delay);
+
+        //Disable Enemy code
+        this.gameObject.SetActive(boolean);
+    }
 }
